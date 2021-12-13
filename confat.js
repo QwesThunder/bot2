@@ -2,7 +2,7 @@ const fs = require('fs')
 const chalk = require('chalk')
 
 // Other
-global.owner = ["62887435047326","62887435047326"]
+global.owner = ["6283807449268","6283807449268"]
 global.packname = 'ZeeoneOfc'
 global.youtube = 'https://youtube.com/c/ZeeoneOfc'
 global.author = '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'
