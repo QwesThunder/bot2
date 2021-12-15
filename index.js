@@ -632,7 +632,7 @@ case 'mp4': case 'ytmp4':
                m.reply('Sayonara~ 👋').then(async res => await alpha.groupLeave(from))
             break
             case 'group': case 'grup':
-                if (!isGroup) return m.reply(lang.groupOnly())
+                if (!m.isGroup) return m.reply(lang.groupOnly())
                 if (!isGroupAdmins ) return m.reply(lang.adminOnly())
                 if (args.length === 1) return m.reply(lang.wrongFormat())
                 if (args[1] === 'open'){
