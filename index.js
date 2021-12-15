@@ -354,13 +354,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
 					sendFileFromUrl(m.chat, data.url, mess.sukses, m)
 					})
 					break
-case '18+': case 'animeh':
-					m.reply(lang.wait())
-					axios.get(`https://api.lolicon.app/setu/v2?r18=1`)
-					.then(({data}) => {
-					sendFileFromUrl(m.chat, data.original, mess.sukses, m)
-					})
-					break
+
 case 'sticker': case 'stiker': case 's': case 'stik':
 try {
 if (!quoted) return m.reply(`Reply Image/Video Dengan Caption ${prefix + command}\n\n*Note*: _Durasi Sticker Video/Gif 1-9 Detik_`)
