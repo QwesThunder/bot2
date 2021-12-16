@@ -354,6 +354,34 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
 					sendFileFromUrl(m.chat, data.url, mess.sukses, m)
 					})
 					break
+case 'hwaifu':
+					m.reply(lang.wait())
+					axios.get(`https://api.waifu.pics/nsfw/waifu`)
+					.then(({data}) => {
+					sendFileFromUrl(m.chat, data.url, mess.sukses, m)
+					})
+					break
+case 'hneko':
+					m.reply(lang.wait())
+					axios.get(`https://api.waifu.pics/nsfw/neko`)
+					.then(({data}) => {
+					sendFileFromUrl(m.chat, data.url, mess.sukses, m)
+					})
+					break
+case 'htrap':
+					m.reply(lang.wait())
+					axios.get(`https://api.waifu.pics/nsfw/trap`)
+					.then(({data}) => {
+					sendFileFromUrl(m.chat, data.url, mess.sukses, m)
+					})
+					break
+case 'blowjob':
+					m.reply(lang.wait())
+					axios.get(`https://api.waifu.pics/nsfw/blowjob`)
+					.then(({data}) => {
+					sendFileFromUrl(m.chat, data.url, mess.sukses, m)
+					})
+					break
 
 case 'sticker': case 'stiker': case 's': case 'stik':
 try {
