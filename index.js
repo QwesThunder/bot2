@@ -270,7 +270,13 @@ alpha.relayMessage(anu, buatpesan.message, { messageId: buatpesan.key.id })
                 alpha.sendMessage(m.chat, { image: { url: result.image }, caption: `⭔ Title : ${result.title}\n⭔ Source : ${result.source}\n⭔ Media Url : ${result.image}` }, { quoted: m })
             }
             break
-            
+            case 'hentai': {
+                m.reply(mess.wait)
+                anu = await hentai()
+                result = anu[Math.floor(Math.random(), anu.length)]
+                alpha.sendMessage(m.chat, { video: { url: result.video_1 }, caption: `⭔ Title : ${result.title}\n⭔ Category : ${result.category}\n⭔ Mimetype : ${result.type}\n⭔ Views : ${result.views_count}\n⭔ Shares : ${result.share_count}\n⭔ Source : ${result.link}\n⭔ Media Url : ${result.video_1}` }, { quoted: m })
+            }
+            break
             case 'quotesanime': case 'quoteanime': {
                 m.reply(mess.wait)
                 anu = await quotesAnime()
@@ -608,6 +614,9 @@ case 'mp4': case 'ytmp4':
                 if (!m.isGroup) return m.reply(lang.groupOnly())
                 if (!isGroupAdmins) return m.reply(lang.adminOnly())
                 if (!isBotAdmins) return m.reply(lang.botNotAdmin())
+                alpha.sendMessage(from, { text : q ? q : '' , mentions: groupMembers.map(a => a.id)})
+             case 'htag':
+                if (!m.isGroup) return m.reply(lang.groupOnly())
                 alpha.sendMessage(from, { text : q ? q : '' , mentions: groupMembers.map(a => a.id)})
             break
             case 'kick': {
