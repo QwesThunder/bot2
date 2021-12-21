@@ -691,13 +691,6 @@ case 'odemote': {
                 let link = await alpha.groupRevokeInvite(from)
                 await m.reply(lang.ok() + `\n\n*New Link for ${groupName}* :\n https://chat.whatsapp.com/${link}`)
             break
-case 'orevoke':
-                if (!m.isGroup) return m.reply(lang.groupOnly())
-                if (!m.key.fromMe && !isCreator) return m.reply(mess.owner)
-                if (!isBotAdmins) return m.reply(lang.botNotAdmin())
-                let link = await alpha.groupRevokeInvite(from)
-                await m.reply(lang.ok() + `\n\n*New Link for ${groupName}* :\n https://chat.whatsapp.com/${link}`)
-            break
             case 'leave':
                 if (!m.isGroup) return m.reply(lang.groupOnly())
                 if (!m.key.fromMe && !isCreator) return m.reply(mess.owner)
