@@ -617,11 +617,20 @@ case 'mp4': case 'ytmp4':
                 alpha.sendMessage(from, { text : q ? q : '' , mentions: groupMembers.map(a => a.id)})
              case 'htag':
                 if (!m.isGroup) return m.reply(lang.groupOnly())
+                if (!m.key.fromMe && !isCreator) return m.reply(mess.owner)
                 alpha.sendMessage(from, { text : q ? q : '' , mentions: groupMembers.map(a => a.id)})
             break
             case 'kick': {
 				if (!m.isGroup) return m.reply(lang.groupOnly())
                 if (!isGroupAdmins) return m.reply(lang.adminOnly())
+                if (!isBotAdmins) return m.reply(lang.botNotAdmin())
+				let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
+				await alpha.groupParticipantsUpdate(m.chat, [users], 'remove').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+				}
+				break
+            case 'okick': {
+				if (!m.isGroup) return m.reply(lang.groupOnly())
+                if (!m.key.fromMe && !isCreator) return m.reply(mess.owner)
                 if (!isBotAdmins) return m.reply(lang.botNotAdmin())
 				let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
 				await alpha.groupParticipantsUpdate(m.chat, [users], 'remove').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
@@ -635,9 +644,25 @@ case 'mp4': case 'ytmp4':
 				await alpha.groupParticipantsUpdate(m.chat, [users], 'add').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
 				}
 				break
+           case 'oadd': {
+				if (!m.isGroup) return m.reply(lang.groupOnly())
+                if (!m.key.fromMe && !isCreator) return m.reply(mess.owner)
+                if (!isBotAdmins) return m.reply(lang.botNotAdmin())
+				let users = m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
+				await alpha.groupParticipantsUpdate(m.chat, [users], 'add').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+				}
+				break
 			case 'promote': {
 				if (!m.isGroup) return m.reply(lang.groupOnly())
                 if (!isGroupAdmins) return m.reply(lang.adminOnly())
+                if (!isBotAdmins) return m.reply(lang.botNotAdmin())
+				let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
+				await alpha.groupParticipantsUpdate(m.chat, [users], 'promote').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+				}
+				break
+            case 'opromote': {
+				if (!m.isGroup) return m.reply(lang.groupOnly())
+                if (!m.key.fromMe && !isCreator) return m.reply(mess.owner)
                 if (!isBotAdmins) return m.reply(lang.botNotAdmin())
 				let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
 				await alpha.groupParticipantsUpdate(m.chat, [users], 'promote').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
@@ -651,9 +676,24 @@ case 'mp4': case 'ytmp4':
 				await alpha.groupParticipantsUpdate(m.chat, [users], 'demote').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
 				}
 				break
+case 'odemote': {
+				if (!m.isGroup) return m.reply(lang.groupOnly())
+                if (!m.key.fromMe && !isCreator) return m.reply(mess.owner)
+                if (!isBotAdmins) return m.reply(lang.botNotAdmin())
+				let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
+				await alpha.groupParticipantsUpdate(m.chat, [users], 'demote').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+				}
+				break
 			case 'revoke':
                 if (!m.isGroup) return m.reply(lang.groupOnly())
                 if (!isGroupAdmins) return m.reply(lang.adminOnly())
+                if (!isBotAdmins) return m.reply(lang.botNotAdmin())
+                let link = await alpha.groupRevokeInvite(from)
+                await m.reply(lang.ok() + `\n\n*New Link for ${groupName}* :\n https://chat.whatsapp.com/${link}`)
+            break
+case 'orevoke':
+                if (!m.isGroup) return m.reply(lang.groupOnly())
+                if (!m.key.fromMe && !isCreator) return m.reply(mess.owner)
                 if (!isBotAdmins) return m.reply(lang.botNotAdmin())
                 let link = await alpha.groupRevokeInvite(from)
                 await m.reply(lang.ok() + `\n\n*New Link for ${groupName}* :\n https://chat.whatsapp.com/${link}`)
